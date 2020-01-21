@@ -12,20 +12,21 @@
 // Colors
 GLfloat WHITE[] = {1, 1, 1};
 GLfloat RED[] = {1, 0, 0};
-GLfloat GREEN[] = {1, 0, 0};
+GLfloat GREEN[] = {0, 1, 0};
 GLfloat MAGENTA[] = {1, 0, 1};
 
 Ball balls[] = {
-  Ball(1, GREEN, 7, 6, 1),
-  Ball(1.5, MAGENTA, 6, 3, 4),
-  Ball(0.4, WHITE, 5, 1, 7)
+  Ball(0.5, GREEN, 7, 6, 1),
+  Ball(0.5, MAGENTA, 6, 3, 4),
+  Ball(0.5, WHITE, 5, 1, 7)
 };
 
 // Global variables: a camera, a checkerboard and some balls.
 Checkerboard checkerboard(8, 8);
 Camera camera;
 
-void Checkerboard::create() {
+void Checkerboard::create()
+{
     displayListId = glGenLists(1);
     glNewList(displayListId, GL_COMPILE);
     //GLfloat lightPosition[] = {4, 3, 7, 1};
@@ -49,31 +50,10 @@ void Checkerboard::create() {
     glCallList(displayListId);
   }
 
-
-/* GLUT callback Handlers */
-
-static void resize(int width, int height)
-{
-    const float ar = (float) width / (float) height;
-
-    glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glFrustum(-ar, ar, -1.0, 1.0, 2.0, 100.0);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity() ;
-}
-
-static void idle(void)
-{
-    glutPostRedisplay();
-}
-
-
 // Application-specific initialization: Set up global lighting parameters
 // and create display lists.
-void init() {
+void init()
+{
   glEnable(GL_DEPTH_TEST);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, WHITE);
   glLightfv(GL_LIGHT0, GL_SPECULAR, WHITE);
@@ -85,21 +65,23 @@ void init() {
 }
 // Draws one frame, the checkerboard then the balls, from the current camera
 // position.
-void display() {
+void display()
+{
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
   gluLookAt(camera.getX(), camera.getY(), camera.getZ(),
             checkerboard.centerx(), 0.0, checkerboard.centerz(),
             0.0, 1.0, 0.0);
   checkerboard.draw();
-  for (int i = 0; i < sizeof balls / sizeof(Ball); i++) {
+  for (unsigned int i = 0; i < sizeof balls / sizeof(Ball); i++) {
     balls[i].update();
   }
   glFlush();
   glutSwapBuffers();
 }
 // On reshape, constructs a camera that perfectly fits the window.
-void reshape(GLint w, GLint h) {
+void reshape(GLint w, GLint h)
+{
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -108,13 +90,15 @@ void reshape(GLint w, GLint h) {
 }
 
 // Requests to draw the next frame.
-void timer(int v) {
+void timer(int v)
+{
   glutPostRedisplay();
   glutTimerFunc(1000/60, timer, v);
 }
 // Moves the camera according to the key pressed, then ask to refresh the
 // display.
-void special(int key, int, int) {
+void special(int key, int, int)
+{
   switch (key) {
     case GLUT_KEY_LEFT: camera.moveLeft(); break;
     case GLUT_KEY_RIGHT: camera.moveRight(); break;
@@ -124,8 +108,10 @@ void special(int key, int, int) {
   glutPostRedisplay();
 }
 
-void key(unsigned char key, int x, int y) {
-  switch (key) {
+void key(unsigned char key, int x, int y)
+{
+  switch (key)
+  {
     case 'a': camera.moveLeft(); break;
     case 'd': camera.moveRight(); break;
     case 'w': camera.moveUp(); break;
@@ -133,7 +119,8 @@ void key(unsigned char key, int x, int y) {
 	case 'q': exit(0);
 
   }
-glutPostRedisplay();
+
+  glutPostRedisplay();
 }
 
 void glut3Dball(void)

@@ -22,11 +22,14 @@
 #include <stdlib.h>
 
 // A camera.
-class Camera {
+class Camera
+{
+private:
   double theta;      // determines the x and z positions
   double y;          // the current y position
   double dTheta;     // increment in theta for swinging the camera around
   double dy;         // increment in y for moving the camera up/down
+
 public:
   Camera(): theta(0), y(3), dTheta(0.04), dy(0.2) {}
   double getX() {return 10 * cos(theta);}
@@ -39,7 +42,9 @@ public:
 };
 
 // A ball.
-class Ball {
+class Ball
+{
+private:
   double radius;
   GLfloat* color;
   double maximumHeight;
@@ -47,18 +52,25 @@ class Ball {
   double y;
   double z;
   int direction;
+
 public:
   Ball(double r, GLfloat* c, double h, double x, double z):
-      radius(r), color(c), maximumHeight(h), direction(-1),
-      y(h), x(x), z(z) {
-  }
-  void update() {
+      radius(r), color(c), maximumHeight(h),
+      x(x), y(h), z(z), direction(-1) {}
+
+  void update()
+  {
     y += direction * 0.05;
-    if (y > maximumHeight) {
+
+    if (y > maximumHeight)
+    {
       y = maximumHeight; direction = -1;
-    } else if (y < radius) {
+    }
+    else if (y < radius)
+    {
       y = radius; direction = 1;
     }
+
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
     glTranslated(x, y, z);
@@ -68,10 +80,13 @@ public:
 };
 
 // A checkerboard.
-class Checkerboard {
+class Checkerboard
+{
+private:
   int displayListId;
   int width;
   int depth;
+
 public:
   Checkerboard(int width, int depth): width(width), depth(depth) {}
   double centerx() {return width / 2;}

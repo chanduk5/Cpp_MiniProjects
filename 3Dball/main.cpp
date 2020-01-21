@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
 
     /* Set Initial window position */
     glutInitWindowPosition(10,10);
+
+    /* Initial display mode */
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     /* Display 3D balls */
