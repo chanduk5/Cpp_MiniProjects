@@ -1,15 +1,10 @@
 /*
- * GLUT Shapes Demo
+ * GLUT 3D shapes
  *
- * Written by Nigel Stewart November 2003
+ * Written by Chandu Kurapati
  *
- * This program is test harness for the sphere, cone
- * and torus shapes in GLUT.
+ * This program is show the 3D balls with GLUT.
  *
- * Spinning wireframe and smooth shaded shapes are
- * displayed until the ESC or q key is pressed.  The
- * number of geometry stacks and slices can be adjusted
- * using the + and - keys.
  */
 
  #include<windows.h>
@@ -22,6 +17,7 @@
 
 #include <cmath>
 #include <stdlib.h>
+#include "3Dball.h"
 
 static int slices = 16;
 static int stacks = 16;
@@ -304,9 +300,14 @@ glutPostRedisplay();
 
 int main(int argc, char *argv[])
 {
+    /* Initialize the GLUT library */
     glutInit(&argc, argv);
-    glutInitWindowSize(800,600);
-    glutInitWindowPosition(80,80);
+
+    /* Set Initial window size */
+    glutInitWindowSize(1500,1000);
+
+    /* Set Initial window position */
+    glutInitWindowPosition(10,10);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
     glutCreateWindow("3D ball");
