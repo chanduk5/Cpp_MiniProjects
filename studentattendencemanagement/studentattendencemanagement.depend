@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1514140582 source:c:\chandu\cpp_preparation\cpp_miniprojects\studentattendencemanagement\main.cpp
+1579700598 source:c:\chandu\cpp_preparation\cpp_miniprojects\studentattendencemanagement\main.cpp
 	<QApplication>
 	<QFont>
 	<QPushButton>
+	<QtWidgets>
+	<QMainWindow>
 
 1575700027 c:\qt\qt5.14.0\5.14.0\mingw73_32\include\qtwidgets\qapplication
 	"qapplication.h"
@@ -700,4 +702,19 @@
 	<QtCore/qsize.h>
 	<QtCore/qlist.h>
 	<QtGui/qpixmap.h>
+
+1579616074 c:\qt\qt5.14.0\5.14.0\mingw73_32\include\qtwidgets
+
+1575700027 c:\qt\qt5.14.0\5.14.0\mingw73_32\include\qtwidgets\qmainwindow
+	"qmainwindow.h"
+
+1575700027 c:\qt\qt5.14.0\5.14.0\mingw73_32\include\qtwidgets\qmainwindow.h
+	<QtWidgets/qtwidgetsglobal.h>
+	<QtWidgets/qwidget.h>
+	<QtWidgets/qtabwidget.h>
+
+1575700027 c:\qt\qt5.14.0\5.14.0\mingw73_32\include\qtwidgets\qtabwidget.h
+	<QtWidgets/qtwidgetsglobal.h>
+	<QtWidgets/qwidget.h>
+	<QtGui/qicon.h>
 
